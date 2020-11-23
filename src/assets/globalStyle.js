@@ -18,6 +18,13 @@ const GlobalStyle = createGlobalStyle`
     color: #838383;
     background-color: #FAFAFA;
   }
+  a {
+    color: inherit;
+    transition: color 0.3s ease;
+    &:hover {
+      color: #333333;
+    }
+  }
   button {
     padding: 0;
     cursor: pointer;

@@ -9,16 +9,20 @@ const Item = styled.li`
   margin-bottom: -5px;
   overflow: hidden;
   position: relative;
+  @media screen and (max-width: 700px) {
+    margin: 0;
+    padding: 30px 0;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.5s ease-in-out;
+    background-color: ${({ active }) => (active ? '#FAFAFA' : null)};
+    font-size: 1.2em;
+  }
 `
 const StyledNavLink = styled(Link)`
   display: block;
   margin-bottom: 2px;
   text-decoration: none;
-  color: #838383;
-  transition: color 0.3s ease;
-  &:hover {
-    color: #333333;
-  }
   &:hover ~ div {
     transform: translateX(0%);
   }
@@ -30,16 +34,22 @@ const Underline = styled.div`
   width: 100%;
   height: 3px;
   background-color: #838383;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease-in-out;
   transform: ${({ active }) => !active && `translateX(-100%)`};
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
 `
 
-const NavItem = ({ to, activePath, children }) => (
-  <Item>
-    <StyledNavLink to={to}>{children}</StyledNavLink>
-    <Underline active={to === activePath ? true : false} />
-  </Item>
-)
+const NavItem = ({ to, activePath, children }) => {
+  const isActive = to === activePath ? true : false
+  return (
+    <Item active={isActive}>
+      <StyledNavLink to={to}>{children}</StyledNavLink>
+      <Underline active={isActive} />
+    </Item>
+  )
+}
 
 NavItem.propTypes = {
   to: PropTypes.string.isRequired,
