@@ -9,13 +9,14 @@ const Item = styled.li`
   margin-bottom: -5px;
   overflow: hidden;
   position: relative;
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
     margin: 0;
     padding: 30px 0;
     width: 100%;
     text-align: center;
     transition: background-color 0.5s ease-in-out;
-    background-color: ${({ active }) => (active ? '#FAFAFA' : null)};
+    background-color: ${({ active, theme }) =>
+      active ? theme.bgColorPrimary : null};
     font-size: 1.2em;
   }
 `
@@ -33,10 +34,10 @@ const Underline = styled.div`
   bottom: 0px;
   width: 100%;
   height: 3px;
-  background-color: #838383;
+  background-color: ${({ theme }) => theme.colorPrimary};
   transition: transform 0.3s ease-in-out;
   transform: ${({ active }) => !active && `translateX(-100%)`};
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
     display: none;
   }
 `

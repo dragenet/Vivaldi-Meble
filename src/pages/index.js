@@ -2,10 +2,12 @@ import React from 'react'
 
 import SEO from '../components/seo'
 
-const IndexPage = () => (
-  <>
-    <SEO />
-  </>
-)
+const IndexPage = () => {
+  return (
+    <>
+      <SEO />
+    </>
+  )
+}
 
 export default IndexPage

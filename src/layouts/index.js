@@ -9,6 +9,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import ThemeProvider from '../Theme/ThemeProvider'
+
 import GlobalStyle from '../assets/globalStyle'
 import NavBar from '../components/NavBar/NavBar'
 import Footer from '../components/Footer'
@@ -25,14 +27,14 @@ const StyledFooter = styled(Footer)`
 `
 
 const Layout = ({ children, path }) => (
-  <>
+  <ThemeProvider>
     <GlobalStyle />
     <NavBar activePath={path} />
     <StyledWrapper>
       <main>{children}</main>
       <StyledFooter />
     </StyledWrapper>
-  </>
+  </ThemeProvider>
 )
 
 Layout.propTypes = {

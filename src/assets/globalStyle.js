@@ -15,14 +15,14 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    color: #838383;
-    background-color: #FAFAFA;
+    color: ${({ theme }) => theme.colorPrimary};
+    background-color: ${({ theme }) => theme.bgColorPrimary};
   }
   a {
     color: inherit;
     transition: color 0.3s ease;
     &:hover {
-      color: #333333;
+      color: ${({ theme }) => theme.colorSecondary};
     }
   }
   button {

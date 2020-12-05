@@ -5,12 +5,12 @@ import styled from 'styled-components'
 const StyledWrapper = styled.footer`
   height: 60px;
   width: 100vw;
-  background-color: #fafafa;
+  background-color: ${({ theme }) => theme.bgColorPrimary};
   display: flex;
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
     flex-direction: column;
     & > span:nth-last-child(1) {
       margin-top: 3px;
