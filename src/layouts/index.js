@@ -11,17 +11,27 @@ import styled from 'styled-components'
 
 import GlobalStyle from '../assets/globalStyle'
 import NavBar from '../components/NavBar/NavBar'
+import Footer from '../components/Footer'
 
-const StyledMain = styled.main`
+const StyledWrapper = styled.div`
   position: absolute;
   top: 70px;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+`
+const StyledFooter = styled(Footer)`
+  margin-top: auto;
 `
 
 const Layout = ({ children, path }) => (
   <>
     <GlobalStyle />
     <NavBar activePath={path} />
-    <StyledMain>{children}</StyledMain>
+    <StyledWrapper>
+      <main>{children}</main>
+      <StyledFooter />
+    </StyledWrapper>
   </>
 )
 
