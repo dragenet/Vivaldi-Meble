@@ -24,6 +24,9 @@ const StyledNavLink = styled(Link)`
   display: block;
   margin-bottom: 2px;
   text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
   &:hover ~ div {
     transform: translateX(0%);
   }
@@ -34,7 +37,7 @@ const Underline = styled.div`
   bottom: 0px;
   width: 100%;
   height: 3px;
-  background-color: ${({ theme }) => theme.colorPrimary};
+  background-color: ${({ theme }) => theme.colorTertiary};
   transition: transform 0.3s ease-in-out;
   transform: ${({ active }) => !active && `translateX(-100%)`};
   @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {

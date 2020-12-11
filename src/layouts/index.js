@@ -11,7 +11,7 @@ import styled from 'styled-components'
 
 import ThemeProvider from '../Theme/ThemeProvider'
 
-import GlobalStyle from '../assets/globalStyle'
+import GlobalStyle from '../Theme/globalStyle'
 import NavBar from '../components/NavBar/NavBar'
 import Footer from '../components/Footer'
 

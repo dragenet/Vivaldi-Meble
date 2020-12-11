@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   z-index: 999;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 70px;
   display: flex;
   align-items: center;
@@ -46,9 +46,9 @@ const MenuWrapper = styled.nav`
     background-color: ${({ theme }) => theme.bgColorMenu};
     padding-top: 73px;
     top: 70px;
-    left: 100vw;
+    left: 100%;
     height: calc(100% - 70px);
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     transition: transform 1s ease;
@@ -80,6 +80,7 @@ const StyledSocialLink = styled.a.attrs(() => ({
 }))`
   display: inline-block;
   margin-right: 15px;
+  text-decoration: none;
   @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
     margin-right: 40px;
     padding: 15px; /*made touch click easier*/

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -18,12 +18,32 @@ const StyledWrapper = styled.footer`
   }
 `
 
-const Footer = ({ className }) => (
-  <StyledWrapper className={className}>
-    <span>&copy; Copyright by ViValdi Meble.&nbsp;</span>
-    <span>Created by Dragenet.</span>
-  </StyledWrapper>
-)
+const Footer = ({ className }) => {
+  const [year, setYear] = useState(null)
+
+  useEffect(() => {
+    setYear(new Date().getFullYear())
+  }, [])
+
+  return (
+    <StyledWrapper className={className}>
+      <span>
+        <small>
+          Copyright &copy; {year} ViValdi MEBLE. All Rights Reserved.&nbsp;
+        </small>
+      </span>
+      <span>
+        <small>
+          Created by{' '}
+          <a href="http://dragenet.pl/" target="__blank">
+            Dragenet
+          </a>
+          .
+        </small>
+      </span>
+    </StyledWrapper>
+  )
+}
 
 Footer.propTypes = {
   className: PropTypes.string,

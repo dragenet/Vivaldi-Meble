@@ -48,12 +48,12 @@ const TextWrapper = styled.div`
 const Text = styled.div`
   text-transform: uppercase;
   font-size: 30px;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontNormal};
   color: #626262;
   margin: 0 15%;
 
   &:nth-child(1) {
-    font-weight: 800;
+    font-weight: ${({ theme }) => theme.fontBold};
     font-size: 50px;
     color: #3e3e3e;
   }
