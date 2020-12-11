@@ -23,7 +23,7 @@ const StyledImage = styled(Image)`
   }
 `
 
-const Text = styled.p`
+const Text = styled.div`
   width: 100%;
   font-size: 22px;
   color: ${({ theme }) => theme.colorPrimary};
