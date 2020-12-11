@@ -9,7 +9,7 @@ const Item = styled.li`
   margin-bottom: -5px;
   overflow: hidden;
   position: relative;
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     margin: 0;
     padding: 30px 0;
     width: 100%;
@@ -40,7 +40,7 @@ const Underline = styled.div`
   background-color: ${({ theme }) => theme.colorTertiary};
   transition: transform 0.3s ease-in-out;
   transform: ${({ active }) => !active && `translateX(-100%)`};
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     display: none;
   }
 `
@@ -58,7 +58,10 @@ const NavItem = ({ to, activePath, children }) => {
 NavItem.propTypes = {
   to: PropTypes.string.isRequired,
   activePath: PropTypes.string,
-  children: PropTypes.any,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 }
 
 NavItem.defaultProps = {

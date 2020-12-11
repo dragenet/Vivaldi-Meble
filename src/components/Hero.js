@@ -10,9 +10,9 @@ const Wrapper = styled.div`
   height: calc(100vh - 70px);
   width: 100%;
   @media screen and (min-width: 1250px) {
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 3fr 2fr;
   }
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     position: relative;
     display: block;
   }
@@ -25,7 +25,7 @@ const InnerWrapper = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     position: absolute;
     width: 100%;
     top: 0;
@@ -40,7 +40,7 @@ const TextWrapper = styled.div`
   justify-content: space-around;
   height: 450px;
   background-color: ${({ theme }) => theme.bgColorPrimary};
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     height: 60%;
   }
 `
@@ -63,7 +63,7 @@ const Text = styled.div`
   &:nth-child(3) {
     align-self: flex-end;
   }
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     margin: 0 10%;
   }
 `

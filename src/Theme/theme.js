@@ -1,5 +1,6 @@
 export const theme = {
-  mobileBreakPoint: '700px',
+  mobileBreakpoint: '700px',
+  featuresBreakpoint: '900px',
   fontSize: '16px',
   fontNormal: '500',
   fontBold: '800',

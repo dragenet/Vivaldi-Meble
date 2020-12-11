@@ -10,7 +10,7 @@ const StyledWrapper = styled.footer`
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     flex-direction: column;
     & > span:nth-last-child(1) {
       margin-top: 3px;

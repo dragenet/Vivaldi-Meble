@@ -29,7 +29,7 @@ const StyledLogo = styled(Link)`
   height: 35px;
   display: inline-flex;
   align-items: baseline;
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     margin-left: 14px;
     align-items: center;
   }
@@ -41,7 +41,7 @@ const MenuWrapper = styled.nav`
   position: relative;
   align-items: flex-end;
   width: 100%;
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     position: fixed;
     background-color: ${({ theme }) => theme.bgColorMenu};
     padding-top: 73px;
@@ -58,7 +58,7 @@ const MenuWrapper = styled.nav`
 
 const StyledNav = styled.ul`
   list-style: none;
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -70,7 +70,7 @@ const Socials = styled.div`
   margin-left: auto;
   margin-right: 20px;
   align-self: center;
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     margin: auto 0 28px 0;
   }
 `
@@ -81,7 +81,7 @@ const StyledSocialLink = styled.a.attrs(() => ({
   display: inline-block;
   margin-right: 15px;
   text-decoration: none;
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     margin-right: 40px;
     padding: 15px; /*made touch click easier*/
     &:last-child {

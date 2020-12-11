@@ -5,7 +5,7 @@ const Wrapper = styled.button`
   display: none;
   position: fixed;
   right: 22px;
-  @media screen and (max-width: ${({ theme }) => theme.mobileBreakPoint}) {
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     display: block;
     border: 0;
     background-color: transparent;
