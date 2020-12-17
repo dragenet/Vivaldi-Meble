@@ -39,14 +39,16 @@ const Underline = styled.div`
   height: 3px;
   background-color: ${({ theme }) => theme.colorTertiary};
   transition: transform 0.3s ease-in-out;
-  transform: ${({ active }) => !active && `translateX(-100%)`};
+  transform: ${({ active }) => !active && `translateX(-101%)`};
   @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     display: none;
   }
 `
 
 const NavItem = ({ to, activePath, children }) => {
-  const isActive = to === activePath ? true : false
+  const re = RegExp(`${to}`)
+  const isActive = re.test(activePath)
+
   return (
     <Item active={isActive}>
       <StyledNavLink to={to}>{children}</StyledNavLink>

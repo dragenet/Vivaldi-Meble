@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -14,10 +14,6 @@ import ThemeProvider from '../Theme/ThemeProvider'
 import GlobalStyle from '../Theme/globalStyle'
 import NavBar from '../components/NavBar/NavBar'
 import Footer from '../components/Footer'
-
-const MainWrapper = styled.div`
-  width: ${({ vw }) => `${vw}px`};
-`
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -32,9 +28,13 @@ const StyledFooter = styled(Footer)`
 `
 
 const getVw = () => document.documentElement.clientWidth
+
 const Layout = ({ children, path }) => {
-  const [vw, setVw] = useState(getVw)
-  const handleResize = () => setVw(getVw)
+  const mainWrapper = useRef(null)
+
+  const handleResize = () => {
+    mainWrapper.current.width = getVw()
+  }
 
   useEffect(() => {
     handleResize()
@@ -43,14 +43,14 @@ const Layout = ({ children, path }) => {
 
   return (
     <ThemeProvider>
-      <MainWrapper vw={vw}>
+      <div ref={mainWrapper}>
         <GlobalStyle />
         <NavBar activePath={path} />
         <StyledWrapper>
           <main>{children}</main>
           <StyledFooter />
         </StyledWrapper>
-      </MainWrapper>
+      </div>
     </ThemeProvider>
   )
 }
