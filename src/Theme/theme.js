@@ -1,4 +1,5 @@
 export const theme = {
+  heroBreakpoint: '1250px',
   mobileBreakpoint: '700px',
   featuresBreakpoint: '900px',
   fontSize: '16px',

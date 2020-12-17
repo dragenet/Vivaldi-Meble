@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
   height: calc(100vh - 70px);
   width: 100%;
-  @media screen and (min-width: 1250px) {
+  @media screen and (min-width: ${({ theme }) => theme.heroBreakpoint}) {
     grid-template-columns: 3fr 2fr;
   }
   @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {

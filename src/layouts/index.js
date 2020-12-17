@@ -15,11 +15,15 @@ import GlobalStyle from '../Theme/globalStyle'
 import NavBar from '../components/NavBar/NavBar'
 import Footer from '../components/Footer'
 
+const MainWrapper = styled.div`
+  width: ${({ vw }) => `${vw}px`};
+`
+
 const StyledWrapper = styled.div`
   position: absolute;
   top: 70px;
   min-height: calc(100vh - 70px);
-  width: ${({ vw }) => `${vw}px`};
+  width: 100%;
   display: flex;
   flex-direction: column;
 `
@@ -39,12 +43,14 @@ const Layout = ({ children, path }) => {
 
   return (
     <ThemeProvider>
-      <GlobalStyle />
-      <NavBar activePath={path} />
-      <StyledWrapper vw={vw}>
-        <main>{children}</main>
-        <StyledFooter />
-      </StyledWrapper>
+      <MainWrapper vw={vw}>
+        <GlobalStyle />
+        <NavBar activePath={path} />
+        <StyledWrapper>
+          <main>{children}</main>
+          <StyledFooter />
+        </StyledWrapper>
+      </MainWrapper>
     </ThemeProvider>
   )
 }
