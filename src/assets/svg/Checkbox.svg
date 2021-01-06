@@ -1,0 +1,12 @@
+<svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="border">
+<line id="Line 3" x1="0.5" x2="0.5" y2="13" stroke="#4A4A4A"/>
+<line id="Line 4" y1="12.5" x2="13" y2="12.5" stroke="#4A4A4A"/>
+<line id="Line 5" x1="12.5" y1="13" x2="12.5" stroke="#4A4A4A"/>
+<line id="Line 6" x1="13" y1="0.5" y2="0.5" stroke="#4A4A4A"/>
+</g>
+<g id="tick">
+<line id="Line 1" x1="1.65354" y1="5.5295" x2="5.55354" y2="9.4295" stroke="#4A4A4A"/>
+<line id="Line 2" x1="4.84646" y1="9.42941" x2="11.2495" y2="3.02633" stroke="#4A4A4A"/>
+</g>
+</svg>

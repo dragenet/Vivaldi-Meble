@@ -1,4 +1,5 @@
 export const theme = {
+  //TODO: Add navbar and footer height
   heroBreakpoint: '1250px',
   mobileBreakpoint: '700px',
   featuresBreakpoint: '900px',
