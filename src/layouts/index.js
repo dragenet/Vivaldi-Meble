@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -27,33 +27,16 @@ const StyledFooter = styled(Footer)`
   margin-top: auto;
 `
 
-const getVw = () => document.documentElement.clientWidth
-
-const Layout = ({ children, path }) => {
-  const mainWrapper = useRef(null)
-
-  const handleResize = () => {
-    mainWrapper.current.width = getVw()
-  }
-
-  useEffect(() => {
-    handleResize()
-    window.addEventListener('resize', handleResize)
-  }, [])
-
-  return (
-    <ThemeProvider>
-      <div ref={mainWrapper}>
-        <GlobalStyle />
-        <NavBar activePath={path} />
-        <StyledWrapper>
-          <main>{children}</main>
-          <StyledFooter />
-        </StyledWrapper>
-      </div>
-    </ThemeProvider>
-  )
-}
+const Layout = ({ children, path }) => (
+  <ThemeProvider>
+    <GlobalStyle />
+    <NavBar activePath={path} />
+    <StyledWrapper>
+      <main>{children}</main>
+      <StyledFooter />
+    </StyledWrapper>
+  </ThemeProvider>
+)
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
