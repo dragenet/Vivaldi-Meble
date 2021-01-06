@@ -45,9 +45,10 @@ const FormInput = ({ name, children, state, onChange, ...props }) => {
         name={name}
         id={name}
         checked={checked}
-        onChange={() => {
+        value={state}
+        onChange={e => {
           setChecked(!checked)
-          onChange()
+          onChange(e)
         }}
         autocomplete="off"
         {...props}

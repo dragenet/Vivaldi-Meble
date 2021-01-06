@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useFormik, Field } from 'formik'
 
 import FormInput from './FormInput'
 import FormTextarea from './FormTextarea'
@@ -25,25 +26,105 @@ const ErrorMsg = styled.div`
 `
 
 const ContactForm = () => {
+  const validate = values => {
+    values.phone = values.phone.replace(/\s/g, '')
+    const errors = {}
+
+    if (!values.name) {
+      errors.name = 'To pole jest wymagane'
+    }
+
+    if (!values.email) {
+      errors.email = 'To pole jest wymagane'
+    } else if (!/\w+@\w+\.\w+/.test(values.email)) {
+      errors.email = 'Podany email nie jest poprawny'
+    }
+    if (!values.phone) {
+      errors.phone = 'To pole jest wymagane'
+    } else if (!/^\+?[0-9]{6,16}$/.test(values.phone)) {
+      errors.phone = 'Podany numer jest nieprawidłowy'
+    }
+    if (!values.message) {
+      errors.message = 'To pole jest wymagane'
+    }
+
+    if (!values.acceptPrivacyPolicy) {
+      errors.acceptPrivacyPolicy = 'To pole jest wymagane'
+    }
+
+    return errors
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+      acceptPrivacyPolicy: false,
+    },
+    onSubmit: values => {
+      console.log(values)
+    },
+    validate,
+  })
+
   return (
-    <StyledForm>
-      <FormInput name="name" autocomplete="name">
+    <StyledForm onSubmit={formik.handleSubmit}>
+      <FormInput
+        name="name"
+        autocomplete="name"
+        onChange={formik.handleChange}
+        value={formik.values.name}
+      >
         Imię i nazwisko
       </FormInput>
-      <ErrorMsg>Błąd</ErrorMsg>
-      <FormInput name="name" type="email" autocomplete="email">
+      {formik.errors.name ? <ErrorMsg>*{formik.errors.name}</ErrorMsg> : null}
+
+      <FormInput
+        name="email"
+        type="email"
+        autocomplete="email"
+        onChange={formik.handleChange}
+        value={formik.values.email}
+      >
         Email
       </FormInput>
-      <FormInput name="number" type="number" autocomplete="tel">
+      {formik.errors.email ? <ErrorMsg>*{formik.errors.email}</ErrorMsg> : null}
+
+      <FormInput
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        onChange={formik.handleChange}
+        value={formik.values.phone}
+      >
         Telefon
       </FormInput>
-      <FormTextarea name="message">Wiadomość</FormTextarea>
+      {formik.errors.phone ? <ErrorMsg>*{formik.errors.phone}</ErrorMsg> : null}
+
+      <FormTextarea
+        name="message"
+        onChange={formik.handleChange}
+        value={formik.values.message}
+      >
+        Wiadomość
+      </FormTextarea>
+      {formik.errors.message ? (
+        <ErrorMsg>*{formik.errors.message}</ErrorMsg>
+      ) : null}
+
       <FormCheckbox
-        name="privacy_policy"
-        onChange={() => console.log('changed')}
+        name="acceptPrivacyPolicy"
+        onChange={formik.handleChange}
+        state={formik.values.acceptPrivacyPolicy}
       >
         Zapoznałem się z informacją o administratorze i przetwarzaniu danych
       </FormCheckbox>
+      {formik.errors.acceptPrivacyPolicy ? (
+        <ErrorMsg>*{formik.errors.acceptPrivacyPolicy}</ErrorMsg>
+      ) : null}
+
       <Button type="submit">Wyślij</Button>
     </StyledForm>
   )
