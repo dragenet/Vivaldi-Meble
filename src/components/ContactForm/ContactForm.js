@@ -79,8 +79,6 @@ const ContactForm = () => {
     formik.setFieldValue('recaptcha', val)
   }
 
-  //console.log(process.env.GATSBY_RECAPTCHA_SITE_KEY)
-
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
       <FormInput

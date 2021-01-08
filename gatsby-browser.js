@@ -1,6 +1,6 @@
-import React from 'react'
-import VirtualViewport from './src/layouts/VirtualViewport'
+// import React from 'react'
+// import VirtualViewport from './src/layouts/VirtualViewport'
 
-export const wrapRootElement = ({ element }) => (
-  <VirtualViewport>{element}</VirtualViewport>
-)
+// export const wrapRootElement = ({ element }) => (
+//   <VirtualViewport>{element}</VirtualViewport>
+// )
