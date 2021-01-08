@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useFormik, Field } from 'formik'
+import { useFormik } from 'formik'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 import FormInput from './FormInput'
 import FormTextarea from './FormTextarea'
@@ -52,6 +53,10 @@ const ContactForm = () => {
       errors.acceptPrivacyPolicy = 'To pole jest wymagane'
     }
 
+    if (!values.recaptcha) {
+      errors.recaptcha = 'To pole jest wymagane'
+    }
+
     return errors
   }
 
@@ -62,12 +67,19 @@ const ContactForm = () => {
       phone: '',
       message: '',
       acceptPrivacyPolicy: false,
+      recaptcha: null,
     },
     onSubmit: values => {
       console.log(values)
     },
     validate,
   })
+
+  const onCaptchaResolve = val => {
+    formik.setFieldValue('recaptcha', val)
+  }
+
+  //console.log(process.env.GATSBY_RECAPTCHA_SITE_KEY)
 
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
@@ -123,6 +135,14 @@ const ContactForm = () => {
       </FormCheckbox>
       {formik.errors.acceptPrivacyPolicy ? (
         <ErrorMsg>*{formik.errors.acceptPrivacyPolicy}</ErrorMsg>
+      ) : null}
+
+      <ReCAPTCHA
+        sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
+        onChange={onCaptchaResolve}
+      />
+      {formik.errors.recaptcha ? (
+        <ErrorMsg>*{formik.errors.recaptcha}</ErrorMsg>
       ) : null}
 
       <Button type="submit">Wyślij</Button>
