@@ -7,23 +7,26 @@ import FormInput from './FormInput'
 import FormTextarea from './FormTextarea'
 import FormCheckbox from './FormCheckbox'
 import FormButton from './FormButton'
+import ErrorMessage from './FormErrorMessage'
 
 const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 50%;
   & > *:not(:first-child) {
-    margin-top: 25px;
+    margin-top: 10px;
   }
 `
-
-const Button = styled(FormButton)`
-  width: 100px;
-  margin: auto;
-`
-
 const ErrorMsg = styled.div`
   color: red;
   font-size: 0.7em;
   margin: 4px 13px !important;
+  visibility: ${({ visible }) => visible};
+`
+const Button = styled(FormButton)`
+  width: 100px;
+  margin: auto;
 `
 
 const ContactForm = () => {
@@ -89,7 +92,7 @@ const ContactForm = () => {
       >
         Imię i nazwisko
       </FormInput>
-      {formik.errors.name ? <ErrorMsg>*{formik.errors.name}</ErrorMsg> : null}
+      <ErrorMessage>{formik.errors.name}</ErrorMessage>
 
       <FormInput
         name="email"
@@ -100,7 +103,7 @@ const ContactForm = () => {
       >
         Email
       </FormInput>
-      {formik.errors.email ? <ErrorMsg>*{formik.errors.email}</ErrorMsg> : null}
+      <ErrorMessage>{formik.errors.email}</ErrorMessage>
 
       <FormInput
         name="phone"
@@ -111,7 +114,7 @@ const ContactForm = () => {
       >
         Telefon
       </FormInput>
-      {formik.errors.phone ? <ErrorMsg>*{formik.errors.phone}</ErrorMsg> : null}
+      <ErrorMessage>{formik.errors.phone}</ErrorMessage>
 
       <FormTextarea
         name="message"
@@ -120,9 +123,7 @@ const ContactForm = () => {
       >
         Wiadomość
       </FormTextarea>
-      {formik.errors.message ? (
-        <ErrorMsg>*{formik.errors.message}</ErrorMsg>
-      ) : null}
+      <ErrorMessage>{formik.errors.message}</ErrorMessage>
 
       <FormCheckbox
         name="acceptPrivacyPolicy"
@@ -131,18 +132,13 @@ const ContactForm = () => {
       >
         Zapoznałem się z informacją o administratorze i przetwarzaniu danych
       </FormCheckbox>
-      {formik.errors.acceptPrivacyPolicy ? (
-        <ErrorMsg>*{formik.errors.acceptPrivacyPolicy}</ErrorMsg>
-      ) : null}
+      <ErrorMessage>{formik.errors.acceptPrivacyPolicy}</ErrorMessage>
 
       <ReCAPTCHA
         sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
         onChange={onCaptchaResolve}
       />
-      {formik.errors.recaptcha ? (
-        <ErrorMsg>*{formik.errors.recaptcha}</ErrorMsg>
-      ) : null}
-
+      <ErrorMessage>{formik.errors.recaptcha}</ErrorMessage>
       <Button type="submit">Wyślij</Button>
     </StyledForm>
   )
