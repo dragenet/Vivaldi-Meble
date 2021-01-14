@@ -3,6 +3,7 @@ export const theme = {
   heroBreakpoint: '1250px',
   mobileBreakpoint: '700px',
   featuresBreakpoint: '900px',
+  cookieAlertBreakpoint: '1000px',
   fontSize: '16px',
   fontNormal: '500',
   fontBold: '800',

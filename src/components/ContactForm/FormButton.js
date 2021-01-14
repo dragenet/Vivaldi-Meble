@@ -24,9 +24,9 @@ const Underline = styled.div`
   background-color: ${({ theme }) => theme.colorTertiary};
 `
 
-const FormButton = ({ name, type, children, className }) => (
+const FormButton = ({ name, type, children, className, onClick }) => (
   <Wrapper className={className}>
-    <StyledButton id={name} name={name} type={type}>
+    <StyledButton id={name} name={name} type={type} onClick={onClick}>
       {children}
     </StyledButton>
     <Underline />
@@ -38,6 +38,7 @@ FormButton.propTypes = {
   type: PropTypes.string,
   children: PropTypes.string,
   className: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 FormButton.defaultProps = {
@@ -45,6 +46,7 @@ FormButton.defaultProps = {
   type: 'submit',
   children: '',
   className: '',
+  onClick: null,
 }
 
 export default FormButton

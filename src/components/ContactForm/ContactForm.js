@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+
 import { useFormik } from 'formik'
 import ReCAPTCHA from 'react-google-recaptcha'
 
@@ -150,7 +151,11 @@ const ContactForm = ({ onSuccessful }) => {
         onChange={formik.handleChange}
         state={formik.values.acceptPrivacyPolicy}
       >
-        Zapoznałem się z informacją o administratorze i przetwarzaniu danych
+        Zapoznałem się z{' '}
+        <a href="/polityka-prywatnosci" target="_blank">
+          informacją o administratorze i przetwarzaniu danych, politką
+          prywatności
+        </a>
       </FormCheckbox>
       <ErrorMessage>{formik.errors.acceptPrivacyPolicy}</ErrorMessage>
 
