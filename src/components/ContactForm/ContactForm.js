@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useFormik } from 'formik'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -18,21 +19,16 @@ const StyledForm = styled.form`
     margin-top: 10px;
   }
 `
-const ErrorMsg = styled.div`
-  color: red;
-  font-size: 0.7em;
-  margin: 4px 13px !important;
-  visibility: ${({ visible }) => visible};
-`
+
 const Button = styled(FormButton)`
   width: 100px;
   margin: auto;
 `
 
-const ContactForm = () => {
+const ContactForm = ({ onSuccessful }) => {
   const validate = values => {
     values.phone = values.phone.replace(/\s/g, '')
-    const errors = {}
+    let errors = {}
 
     if (!values.name) {
       errors.name = 'To pole jest wymagane'
@@ -73,7 +69,31 @@ const ContactForm = () => {
       recaptcha: null,
     },
     onSubmit: values => {
-      console.log(values)
+      // console.log(values)
+      fetch('/.netlify/functions/contactform', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      })
+        .then(res => {
+          console.log(res)
+          if (res.status !== 200 && res.status !== 400 && res.status !== 401)
+            throw Error(res)
+
+          return res.json()
+        })
+        .then(data => {
+          if (data.status !== 'successful') {
+            formik.setErrors(data.errors)
+          } else {
+            onSuccessful()
+          }
+        })
+        .catch(err =>
+          formik.setErrors({ submit: 'Przepraszamy. Spróbuj ponownie później' })
+        )
     },
     validate,
   })
@@ -139,9 +159,19 @@ const ContactForm = () => {
         onChange={onCaptchaResolve}
       />
       <ErrorMessage>{formik.errors.recaptcha}</ErrorMessage>
+
       <Button type="submit">Wyślij</Button>
+      <ErrorMessage asterisk={false}>{formik.errors.submit}</ErrorMessage>
     </StyledForm>
   )
+}
+
+ContactForm.propTypes = {
+  onSuccessful: PropTypes.func,
+}
+
+ContactForm.defaultProps = {
+  onSuccessful: null,
 }
 
 export default ContactForm

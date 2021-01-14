@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const FormErrorMessage = ({ children }) => {
+const FormErrorMessage = ({ children, asterisk }) => {
   const ErrorMsg = styled.div`
     color: red;
     font-size: 0.7em;
@@ -11,7 +11,12 @@ const FormErrorMessage = ({ children }) => {
   `
 
   const visible = children === '' ? 'hidden' : 'visible'
-  return <ErrorMsg visible={visible}>*{children}</ErrorMsg>
+  return (
+    <ErrorMsg visible={visible}>
+      {asterisk ? '*' : ''}
+      {children}
+    </ErrorMsg>
+  )
 }
 
 FormErrorMessage.propTypes = {
@@ -19,10 +24,12 @@ FormErrorMessage.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  asterisk: PropTypes.bool,
 }
 
 FormErrorMessage.defaultProps = {
   children: '',
+  asterisk: true,
 }
 
 export default FormErrorMessage
