@@ -5,11 +5,9 @@ import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 
 import Hero from '../components/Hero'
-import Features, {StyledFeatureItem} from '../components/Features/Features'
+import Features, { StyledFeatureItem } from '../components/Features/Features'
 
 import Card from '../components/Card'
-
-
 
 const StyledFeatures = styled(Features)`
   width: 100%;
@@ -20,37 +18,67 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <SEO />
-      <Hero />
+      <Hero fluid={data.hero.heroImage.fluid} />
       <StyledFeatures>
-      <StyledFeatureItem fluid={data.feature.childImageSharp.fluid}>
-        Feature 1
-      </StyledFeatureItem>
-      <StyledFeatureItem fluid={data.feature.childImageSharp.fluid}>
-        Feature 2
-      </StyledFeatureItem>
-      <StyledFeatureItem fluid={data.feature.childImageSharp.fluid}>
-        Feature 3
-      </StyledFeatureItem>
+        <StyledFeatureItem fluid={data.features.feature1Image.fluid}>
+          {data.features.feature1Name}
+        </StyledFeatureItem>
+        <StyledFeatureItem fluid={data.features.feature2Image.fluid}>
+          {data.features.feature2Name}
+        </StyledFeatureItem>
+        <StyledFeatureItem fluid={data.features.feature3Image.fluid}>
+          {data.features.feature3Name}
+        </StyledFeatureItem>
       </StyledFeatures>
-      <Card fluid={data.card.childImageSharp.fluid}>Meble Łazienkowe</Card>
-      <Card fluid={data.card.childImageSharp.fluid}>Meble Łazienkowe</Card>
+      {data.cards.edges.map(item => (
+        <Card fluid={item.node.serviceImage.fluid}>
+          {item.node.serviceName}
+        </Card>
+      ))}
     </>
   )
 }
 
 export const card1 = graphql`
   query card1 {
-    card: file(relativePath: { eq: "card1.jpg" }) {
-      childImageSharp {
+    hero: datoCmsGeneral {
+      heroImage {
         fluid {
-          ...GatsbyImageSharpFluid_tracedSVG
+          ...GatsbyDatoCmsFluid_tracedSVG
         }
       }
     }
-    feature: file(relativePath: { eq: "feature1.jpg" }) {
-      childImageSharp {
+
+    features: datoCmsFeature {
+      feature1Name
+      feature2Name
+      feature3Name
+      feature1Image {
         fluid {
-          ...GatsbyImageSharpFluid_tracedSVG
+          ...GatsbyDatoCmsFluid_tracedSVG
+        }
+      }
+      feature2Image {
+        fluid {
+          ...GatsbyDatoCmsFluid_tracedSVG
+        }
+      }
+      feature3Image {
+        fluid {
+          ...GatsbyDatoCmsFluid_tracedSVG
+        }
+      }
+    }
+
+    cards: allDatoCmsService {
+      edges {
+        node {
+          serviceName
+          serviceImage {
+            fluid {
+              ...GatsbyDatoCmsFluid_tracedSVG
+            }
+          }
         }
       }
     }

@@ -73,32 +73,17 @@ const StyledImage = styled(Image)`
   width: 100%;
 `
 
-const Hero = () => {
-  const heroImage = useStaticQuery(
-    graphql`
-      query heroImage {
-        file(relativePath: { eq: "hero.jpg" }) {
-          childImageSharp {
-            fluid(quality: 100) {
-              ...GatsbyImageSharpFluid_tracedSVG
-            }
-          }
-        }
-      }
-    `
-  )
-  return (
-    <Wrapper>
-      <StyledImage fluid={heroImage.file.childImageSharp.fluid} />
-      <InnerWrapper>
-        <TextWrapper>
-          <Text>Meble</Text>
-          <Text>Na każdą</Text>
-          <Text>Porę Roku</Text>
-        </TextWrapper>
-      </InnerWrapper>
-    </Wrapper>
-  )
-}
+const Hero = ({ fluid }) => (
+  <Wrapper>
+    <StyledImage fluid={fluid} />
+    <InnerWrapper>
+      <TextWrapper>
+        <Text>Meble</Text>
+        <Text>Na każdą</Text>
+        <Text>Porę Roku</Text>
+      </TextWrapper>
+    </InnerWrapper>
+  </Wrapper>
+)
 
 export default Hero

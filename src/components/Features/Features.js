@@ -26,28 +26,16 @@ export const StyledFeatureItem = styled(FeatureItem)`
   }
 `
 
-const Features = ({ className, children }) => {
-  const img = useStaticQuery(graphql`
-    query featureImage {
-      file(relativePath: { eq: "feature1.jpg" }) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
-        }
-      }
-    }
-  `)
-  return (
-    <Wrapper className={className}>
-      {children}
-    </Wrapper>
-  )
-}
+const Features = ({ className, children }) => (
+  <Wrapper className={className}>{children}</Wrapper>
+)
 
 Features.propTypes = {
   className: PropTypes.string,
-  childre: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)])
+  childre: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 }
 
 Features.defaultProps = {
