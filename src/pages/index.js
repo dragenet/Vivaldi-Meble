@@ -5,8 +5,11 @@ import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 
 import Hero from '../components/Hero'
-import Features from '../components/Features/Features'
+import Features, {StyledFeatureItem} from '../components/Features/Features'
+
 import Card from '../components/Card'
+
+
 
 const StyledFeatures = styled(Features)`
   width: 100%;
@@ -18,16 +21,33 @@ const IndexPage = ({ data }) => {
     <>
       <SEO />
       <Hero />
-      <StyledFeatures />
-      <Card fluid={data.file.childImageSharp.fluid}>Meble Łazienkowe</Card>
-      <Card fluid={data.file.childImageSharp.fluid}>Meble Łazienkowe</Card>
+      <StyledFeatures>
+      <StyledFeatureItem fluid={data.feature.childImageSharp.fluid}>
+        Feature 1
+      </StyledFeatureItem>
+      <StyledFeatureItem fluid={data.feature.childImageSharp.fluid}>
+        Feature 2
+      </StyledFeatureItem>
+      <StyledFeatureItem fluid={data.feature.childImageSharp.fluid}>
+        Feature 3
+      </StyledFeatureItem>
+      </StyledFeatures>
+      <Card fluid={data.card.childImageSharp.fluid}>Meble Łazienkowe</Card>
+      <Card fluid={data.card.childImageSharp.fluid}>Meble Łazienkowe</Card>
     </>
   )
 }
 
 export const card1 = graphql`
   query card1 {
-    file(relativePath: { eq: "card1.jpg" }) {
+    card: file(relativePath: { eq: "card1.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+    feature: file(relativePath: { eq: "feature1.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid_tracedSVG

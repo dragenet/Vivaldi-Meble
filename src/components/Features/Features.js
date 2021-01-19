@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 `
 
-const StyledFeatureItem = styled(FeatureItem)`
+export const StyledFeatureItem = styled(FeatureItem)`
   @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     margin-bottom: 25px;
     &:last-child {
@@ -26,7 +26,7 @@ const StyledFeatureItem = styled(FeatureItem)`
   }
 `
 
-const Features = ({ className }) => {
+const Features = ({ className, children }) => {
   const img = useStaticQuery(graphql`
     query featureImage {
       file(relativePath: { eq: "feature1.jpg" }) {
@@ -40,24 +40,18 @@ const Features = ({ className }) => {
   `)
   return (
     <Wrapper className={className}>
-      <StyledFeatureItem fluid={img.file.childImageSharp.fluid}>
-        Feature 1
-      </StyledFeatureItem>
-      <StyledFeatureItem fluid={img.file.childImageSharp.fluid}>
-        Feature 2
-      </StyledFeatureItem>
-      <StyledFeatureItem fluid={img.file.childImageSharp.fluid}>
-        Feature 3
-      </StyledFeatureItem>
+      {children}
     </Wrapper>
   )
 }
 
 Features.propTypes = {
   className: PropTypes.string,
+  childre: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)])
 }
 
 Features.defaultProps = {
   className: null,
+  children: null,
 }
 export default Features
