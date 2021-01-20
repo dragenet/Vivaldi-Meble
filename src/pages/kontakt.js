@@ -7,7 +7,7 @@ import ContactForm from '../components/ContactForm/ContactForm'
 
 const Wrapper = styled.div`
   width: 100%;
-  min-height: calc(100vh - 130px);
+  min-height: calc(100vh - 140px);
   display: flex;
   @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     flex-direction: column;

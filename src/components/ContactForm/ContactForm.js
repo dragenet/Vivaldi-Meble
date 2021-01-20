@@ -26,6 +26,12 @@ const Button = styled(FormButton)`
   margin: auto;
 `
 
+const StyledReCAPTCHA = styled(ReCAPTCHA)`
+  @media screen and (max-width: ${({ theme }) => theme.featuresBreakpoint}) {
+    transform: scale(0.5);
+  }
+`
+
 const ContactForm = ({ onSuccessful }) => {
   const validate = values => {
     values.phone = values.phone.replace(/\s/g, '')
@@ -162,7 +168,7 @@ const ContactForm = ({ onSuccessful }) => {
       </FormCheckbox>
       <ErrorMessage>{formik.errors.acceptPrivacyPolicy}</ErrorMessage>
 
-      <ReCAPTCHA
+      <StyledReCAPTCHA
         sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
         onChange={onCaptchaResolve}
       />
