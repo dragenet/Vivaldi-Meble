@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 
 import ThemeProvider from '../Theme/ThemeProvider'
 
@@ -61,10 +61,24 @@ const Layout = ({ children, path }) => {
     setCookiesAccepted(true)
     sessionStorage.setItem('cookiesAccepted', true)
   }
+
+  const socials = useStaticQuery(graphql`
+    query query {
+      datoCmsGeneral {
+        facebook
+        instagram
+      }
+    }
+  `)
+
   return (
     <ThemeProvider>
       <GlobalStyle />
-      <NavBar activePath={path} />
+      <NavBar
+        activePath={path}
+        facebook={socials.datoCmsGeneral.facebook}
+        instagram={socials.datoCmsGeneral.instagram}
+      />
       <StyledWrapper>
         <main>{children}</main>
         <StyledFooter />

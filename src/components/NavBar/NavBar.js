@@ -93,7 +93,7 @@ const StyledSocialLink = styled.a.attrs(() => ({
   }
 `
 
-const NavBar = ({ activePath }) => {
+const NavBar = ({ activePath, facebook, instagram }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [lastPath, setLastPath] = useState(activePath)
 
@@ -133,10 +133,10 @@ const NavBar = ({ activePath }) => {
         </StyledNav>
 
         <Socials>
-          <StyledSocialLink href="https://www.facebook.com/">
+          <StyledSocialLink href={facebook}>
             <FontAwesomeIcon icon={faFacebookF} />
           </StyledSocialLink>
-          <StyledSocialLink href="https://www.instagram.com/">
+          <StyledSocialLink href={instagram}>
             <FontAwesomeIcon icon={faInstagram} />
           </StyledSocialLink>
         </Socials>
@@ -153,6 +153,13 @@ const NavBar = ({ activePath }) => {
 
 NavBar.propTypes = {
   activePath: PropTypes.string.isRequired,
+  facebook: PropTypes.string,
+  instagram: PropTypes.string,
+}
+
+NavBar.defaultProps = {
+  facebook: 'https://www.facebook.com/',
+  instagram: 'https://www.instagram.com/',
 }
 
 export default NavBar
