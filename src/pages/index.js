@@ -39,8 +39,8 @@ const IndexPage = ({ data }) => {
   )
 }
 
-export const card1 = graphql`
-  query card1 {
+export const query = graphql`
+  query index {
     hero: datoCmsGeneral {
       heroImage {
         fluid {

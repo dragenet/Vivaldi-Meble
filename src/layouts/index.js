@@ -61,7 +61,6 @@ const Layout = ({ children, path }) => {
     setCookiesAccepted(true)
     sessionStorage.setItem('cookiesAccepted', true)
   }
-  console.log(`Session ${sessionStorage.getItem('cookiesAccepted')}`)
   return (
     <ThemeProvider>
       <GlobalStyle />

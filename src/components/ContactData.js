@@ -5,15 +5,17 @@ const StyledName = styled.h3`
   font-size: 28px;
 `
 
-const ContactData = ({ data: { name, nip, phone, email, addr1, addr2 } }) => {
+const ContactData = ({
+  data: { name, nip, phone, email, address1, address2 },
+}) => {
   return (
     <div>
       <StyledName>{name}</StyledName>
       <p>NIP: {nip}</p>
       <p>Telefon: {phone}</p>
       <p>E-mail: {email}</p>
-      <p>{addr1}</p>
-      <p>{addr2}</p>
+      <p>{address1}</p>
+      <p>{address2}</p>
     </div>
   )
 }

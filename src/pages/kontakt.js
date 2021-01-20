@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { graphql } from 'gatsby'
 
 import ContactData from '../components/ContactData'
 import ContactForm from '../components/ContactForm/ContactForm'
@@ -25,26 +26,29 @@ const InnerWrapper = styled.div`
   }
 `
 
-const kontakt = () => {
-  const dummyData = {
-    name: 'John Doe',
-    nip: '00000000',
-    phone: '+12 123 456 78',
-    email: 'mebleviavaldipl@gmail.com',
-    addr1: 'ul. Pistacjowa 39,',
-    addr2: '39-045 Kraków',
-  }
-  return (
-    <Wrapper>
-      <InnerWrapper>
-        <ContactData data={dummyData} />
-      </InnerWrapper>
+const kontakt = ({ data }) => (
+  <Wrapper>
+    <InnerWrapper>
+      <ContactData data={data.datoCmsContact} />
+    </InnerWrapper>
 
-      <InnerWrapper>
-        <ContactForm />
-      </InnerWrapper>
-    </Wrapper>
-  )
-}
+    <InnerWrapper>
+      <ContactForm />
+    </InnerWrapper>
+  </Wrapper>
+)
+
+export const query = graphql`
+  query contact {
+    datoCmsContact {
+      name
+      nip
+      phone
+      email
+      address1
+      address2
+    }
+  }
+`
 
 export default kontakt
