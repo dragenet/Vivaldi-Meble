@@ -85,22 +85,22 @@ const ContactForm = ({ onSuccessful }) => {
         body: JSON.stringify(values),
       })
         .then(res => {
-          console.log(res)
-          if (res.status !== 200 && res.status !== 400 && res.status !== 401)
+          if (res.status === 200 || res.status === 400 || res.status === 401) {
+            return res.json()
+          } else {
             throw Error(res)
-
-          return res.json()
+          }
         })
         .then(data => {
           if (data.status !== 'successful') {
             formik.setErrors(data.errors)
           } else {
-            onSuccessful()
+            if (typeof onSuccessful === 'function') onSuccessful()
           }
         })
-        .catch(err =>
+        .catch(err => {
           formik.setErrors({ submit: 'Przepraszamy. Spróbuj ponownie później' })
-        )
+        })
     },
     validate,
   })

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
@@ -26,17 +26,33 @@ const InnerWrapper = styled.div`
   }
 `
 
-const kontakt = ({ data }) => (
-  <Wrapper>
-    <InnerWrapper>
-      <ContactData data={data.datoCmsContact} />
-    </InnerWrapper>
+const Kontakt = ({ data }) => {
+  const [isSend, setIsSend] = useState(false)
 
-    <InnerWrapper>
-      <ContactForm />
-    </InnerWrapper>
-  </Wrapper>
-)
+  const formSuccessful = () => {
+    console.log('Form send')
+    setIsSend(true)
+  }
+
+  return (
+    <Wrapper>
+      <InnerWrapper>
+        <ContactData data={data.datoCmsContact} />
+      </InnerWrapper>
+
+      <InnerWrapper>
+        {isSend ? (
+          <>
+            <h4>Dziękujemy</h4>
+            <p>Twoje zapytanie jest teraz przetwarzane!</p>
+          </>
+        ) : (
+          <ContactForm onSuccessful={formSuccessful} />
+        )}
+      </InnerWrapper>
+    </Wrapper>
+  )
+}
 
 export const query = graphql`
   query contact {
@@ -51,4 +67,4 @@ export const query = graphql`
   }
 `
 
-export default kontakt
+export default Kontakt
