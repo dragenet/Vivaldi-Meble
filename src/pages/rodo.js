@@ -2,13 +2,13 @@ import React from 'react'
 
 import Policy, { StyledH2 } from '../components/Policy'
 
-const cookiesPolicy = ({ data }) => (
+const rodo = ({ data }) => (
   <>
     <Policy>
-      <StyledH2>Polityka Cookies</StyledH2>
+      {/* <StyledH2>Polityka Cookies</StyledH2> */}
       <div
         dangerouslySetInnerHTML={{
-          __html: data.html.cookiesPolicy,
+          __html: data.html.rodoPolicy,
         }}
       ></div>
     </Policy>
@@ -16,11 +16,11 @@ const cookiesPolicy = ({ data }) => (
 )
 
 export const query = graphql`
-  query cookiesPolicy {
+  query rodoPolicy {
     html: datoCmsGeneral {
-      cookiesPolicy
+      rodoPolicy
     }
   }
 `
 
-export default cookiesPolicy
+export default rodo

@@ -86,7 +86,11 @@ const Layout = ({ children, path }) => {
           <StyledCookiesAlert>
             <StyledSmall>
               Ta strona wykorzystuje pliki cookies. Przeglądając ją wyrażasz
-              zgogę na <Link to="/polityka-cookies">politykę cookies</Link>.
+              zgogę na{' '}
+              <a href="/polityka-prywatnosci" target="_blank">
+                politykę prywatności
+              </a>
+              .
             </StyledSmall>
             <StyledButton type="button" onClick={handleCookies}>
               Akceptuję

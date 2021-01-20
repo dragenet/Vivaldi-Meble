@@ -153,8 +153,11 @@ const ContactForm = ({ onSuccessful }) => {
       >
         Zapoznałem się z{' '}
         <a href="/polityka-prywatnosci" target="_blank">
-          informacją o administratorze i przetwarzaniu danych, politką
-          prywatności
+          polityką prywatności
+        </a>
+        {' i '}
+        <a href="/rodo" target="_blank">
+          informacją o przetwarzaniu danych osobowych
         </a>
       </FormCheckbox>
       <ErrorMessage>{formik.errors.acceptPrivacyPolicy}</ErrorMessage>

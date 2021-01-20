@@ -5,7 +5,7 @@ import Policy, { StyledH2 } from '../components/Policy'
 const privacyPolicy = ({ data }) => (
   <>
     <Policy>
-      <StyledH2>Polityka Prywatności</StyledH2>
+      {/* <StyledH2>Polityka Prywatności</StyledH2> */}
       <div
         dangerouslySetInnerHTML={{
           __html: data.html.privacyPolicy,

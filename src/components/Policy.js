@@ -11,9 +11,22 @@ const Wrapper = styled.div`
 `
 
 const InnerWrapper = styled.div`
-  width: 50%;
+  width: 70%;
   align-items: center;
   justify-content: center;
+
+  ul {
+    margin-left: 15px;
+  }
+
+  h1 {
+    margin: 40px 0;
+  }
+
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
 `
 
 export const StyledH2 = styled.h2`

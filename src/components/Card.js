@@ -6,6 +6,7 @@ import Image from 'gatsby-image'
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 60% 40%; //repeat(2, 1fr);
+  height: 300px;
   &:nth-child(even) {
     direction: rtl;
   }
