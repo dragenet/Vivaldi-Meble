@@ -1,6 +1,4 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+require('dotenv').config()
 
 module.exports = {
   siteMetadata: {
@@ -40,6 +38,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-layout`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
