@@ -11,6 +11,8 @@ import FormCheckbox from './FormCheckbox'
 import FormButton from './FormButton'
 import ErrorMessage from './FormErrorMessage'
 
+import validator from './helpers/validator'
+
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -28,44 +30,14 @@ const Button = styled(FormButton)`
 
 const StyledReCAPTCHA = styled(ReCAPTCHA)`
   @media screen and (max-width: ${({ theme }) => theme.featuresBreakpoint}) {
+    transform: scale(0.7);
+  }
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     transform: scale(0.5);
   }
 `
 
 const ContactForm = ({ onSuccessful }) => {
-  const validate = values => {
-    values.phone = values.phone.replace(/\s/g, '')
-    let errors = {}
-
-    if (!values.name) {
-      errors.name = 'To pole jest wymagane'
-    }
-
-    if (!values.email) {
-      errors.email = 'To pole jest wymagane'
-    } else if (!/\w+@\w+\.\w+/.test(values.email)) {
-      errors.email = 'Podany email nie jest poprawny'
-    }
-    if (!values.phone) {
-      errors.phone = 'To pole jest wymagane'
-    } else if (!/^\+?[0-9]{6,16}$/.test(values.phone)) {
-      errors.phone = 'Podany numer jest nieprawidłowy'
-    }
-    if (!values.message) {
-      errors.message = 'To pole jest wymagane'
-    }
-
-    if (!values.acceptPrivacyPolicy) {
-      errors.acceptPrivacyPolicy = 'To pole jest wymagane'
-    }
-
-    if (!values.recaptcha) {
-      errors.recaptcha = 'To pole jest wymagane'
-    }
-
-    return errors
-  }
-
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -95,14 +67,15 @@ const ContactForm = ({ onSuccessful }) => {
           if (data.status !== 'successful') {
             formik.setErrors(data.errors)
           } else {
-            onSuccessful()
+            if (typeof onSuccessful === 'function') onSuccessful()
           }
         })
-        .catch(err =>
+        .catch(err => {
+          console.log(err)
           formik.setErrors({ submit: 'Przepraszamy. Spróbuj ponownie później' })
-        )
+        })
     },
-    validate,
+    validate: validator,
   })
 
   const onCaptchaResolve = val => {
