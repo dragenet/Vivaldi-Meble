@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { graphql, useStaticQuery } from 'gatsby'
-
 import FeatureItem from './FeatureItem'
 
 const Wrapper = styled.div`

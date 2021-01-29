@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `ViValdi MEBLE`,
     description: `MEBLE na każdą porę roku`,
-    author: `@dragenet`,
+    author: `ViValdi MEBLE`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

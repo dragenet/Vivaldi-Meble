@@ -1,11 +1,12 @@
 import React from 'react'
 
-import Policy, { StyledH2 } from '../components/Policy'
+import SEO from '../components/seo'
+import Policy from '../components/Policy'
 
 const privacyPolicy = ({ data }) => (
   <>
+    <SEO title="Polityka prywatności" />
     <Policy>
-      {/* <StyledH2>Polityka Prywatności</StyledH2> */}
       <div
         dangerouslySetInnerHTML={{
           __html: data.html.privacyPolicy,

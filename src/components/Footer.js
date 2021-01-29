@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Link } from 'gatsby'
 
 const StyledWrapper = styled.footer`
   height: 70px;
@@ -51,8 +52,8 @@ const Footer = ({ className }) => {
       </InnerWrapper>
       <div>
         <InnerWrapper>
-          <a href="polityka-prywatnosci">Polityka prywatności</a>
-          <a href="polityka-prywatnosci">Informacja o przetwarzaniu</a>
+          <Link to="/polityka-prywatnosci">Polityka prywatności</Link>
+          <Link to="/rodo">Informacja o przetwarzaniu</Link>
         </InnerWrapper>
       </div>
     </StyledWrapper>

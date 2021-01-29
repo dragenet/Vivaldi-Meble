@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
+import SEO from '../components/seo'
 import ContactData from '../components/ContactData'
 import ContactForm from '../components/ContactForm/ContactForm'
 
@@ -27,15 +28,18 @@ const InnerWrapper = styled.div`
 `
 
 const kontakt = ({ data }) => (
-  <Wrapper>
-    <InnerWrapper>
-      <ContactData data={data.datoCmsContact} />
-    </InnerWrapper>
+  <>
+    <SEO title="Kontakt" />
+    <Wrapper>
+      <InnerWrapper>
+        <ContactData data={data.datoCmsContact} />
+      </InnerWrapper>
 
-    <InnerWrapper>
-      <ContactForm />
-    </InnerWrapper>
-  </Wrapper>
+      <InnerWrapper>
+        <ContactForm />
+      </InnerWrapper>
+    </Wrapper>
+  </>
 )
 
 export const query = graphql`
