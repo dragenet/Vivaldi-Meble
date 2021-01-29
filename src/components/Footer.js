@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 const StyledWrapper = styled.footer`
-  height: 70px;
+  height: ${({ theme }) => theme.footerHeight};
   width: 100%;
   background-color: ${({ theme }) => theme.bgColorPrimary};
   display: flex;

@@ -21,7 +21,7 @@ import Button from '../components/ContactForm/FormButton'
 const StyledWrapper = styled.div`
   position: absolute;
   top: 70px;
-  min-height: calc(100vh - 70px);
+  min-height: ${({ theme }) => `calc(100vh - ${theme.navbarHeight})`};
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,9 @@ const Layout = ({ children, path }) => {
       />
       <StyledWrapper>
         <main>{children}</main>
+
         <StyledFooter />
+
         {cookiesAccepted ? null : (
           <StyledCookiesAlert>
             <StyledSmall>

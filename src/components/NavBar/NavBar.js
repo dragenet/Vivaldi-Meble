@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: ${({ theme }) => theme.navbarHeight};
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.bgColorPrimary};

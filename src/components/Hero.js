@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: inline-grid;
   direction: rtl;
   grid-template-columns: repeat(2, 1fr);
-  height: calc(100vh - 70px);
+  height: ${({ theme }) => `calc(100vh - ${theme.navbarHeight})`};
   width: 100%;
   @media screen and (min-width: ${({ theme }) => theme.heroBreakpoint}) {
     grid-template-columns: 3fr 2fr;
