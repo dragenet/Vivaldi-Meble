@@ -1,6 +1,9 @@
 require('dotenv').config()
+<<<<<<< HEAD
 
 console.log('Apitoken', process.env.DATO_API_TOKEN)
+=======
+>>>>>>> dev
 
 module.exports = {
   siteMetadata: {
@@ -40,6 +43,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-layout`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
