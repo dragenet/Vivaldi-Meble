@@ -1,6 +1,6 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+require('dotenv').config()
+
+console.log('Apitoken', process.env.DATO_API_TOKEN)
 
 module.exports = {
   siteMetadata: {
