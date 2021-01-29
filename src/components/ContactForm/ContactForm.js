@@ -12,6 +12,7 @@ import FormButton from './FormButton'
 import ErrorMessage from './FormErrorMessage'
 
 import validator from './helpers/validator'
+import fetchForm from './helpers/fetchForm'
 
 const StyledForm = styled.form`
   display: flex;
@@ -48,21 +49,7 @@ const ContactForm = ({ onSuccessful }) => {
       recaptcha: null,
     },
     onSubmit: values => {
-      // console.log(values)
-      fetch('/.netlify/functions/contactform', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      })
-        .then(res => {
-          console.log(res)
-          if (res.status !== 200 && res.status !== 400 && res.status !== 401)
-            throw Error(res)
-
-          return res.json()
-        })
+      fetchForm(values)
         .then(data => {
           if (data.status !== 'successful') {
             formik.setErrors(data.errors)
