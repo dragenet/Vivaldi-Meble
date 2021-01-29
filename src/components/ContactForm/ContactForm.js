@@ -11,8 +11,8 @@ import FormCheckbox from './FormCheckbox'
 import FormButton from './FormButton'
 import ErrorMessage from './FormErrorMessage'
 
-import validator from './helpers/validator'
-import fetchForm from './helpers/fetchForm'
+import validator from '../../helpers/validatordatorator'
+import fetchForm from '../../helpers/fetchFormForm'
 
 const StyledForm = styled.form`
   display: flex;
