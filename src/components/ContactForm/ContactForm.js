@@ -11,8 +11,8 @@ import FormCheckbox from './FormCheckbox'
 import FormButton from './FormButton'
 import ErrorMessage from './FormErrorMessage'
 
-import validator from '../../helpers/validatordatorator'
-import fetchForm from '../../helpers/fetchFormForm'
+import validator from '../../helpers/formValidator'
+import fetchForm from '../../helpers/fetchForm'
 
 const StyledForm = styled.form`
   display: flex;
@@ -58,7 +58,6 @@ const ContactForm = ({ onSuccessful }) => {
           }
         })
         .catch(err => {
-          console.log(err)
           formik.setErrors({ submit: 'Przepraszamy. Spróbuj ponownie później' })
         })
     },

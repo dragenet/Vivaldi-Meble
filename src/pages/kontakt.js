@@ -31,7 +31,6 @@ const Kontakt = ({ data }) => {
   const [isSend, setIsSend] = useState(false)
 
   const formSuccessful = () => {
-    console.log('Form send')
     setIsSend(true)
   }
 

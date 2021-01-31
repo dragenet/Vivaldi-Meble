@@ -7,7 +7,6 @@ const fetchForm = values =>
       },
       body: JSON.stringify(values),
     }).then(res => {
-      console.log(res)
       if (res.status !== 200 && res.status !== 400 && res.status !== 401)
         reject(Error(res))
 

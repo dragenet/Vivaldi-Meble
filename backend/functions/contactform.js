@@ -80,11 +80,9 @@ const onSuccessful = async ({ name, email, phone, message }, e) => {
       subject: `Nowe zapytanie od ${name}`,
     },
   }
-  console.log(msg)
   return await sgMail
     .send(msg)
     .then(() => {
-      console.log('msg send')
       msg.to = email
       msg.templateId = process.env.SENDGRID_TEMPLATE_CUSTOMER
       msg.subject = 'Twoje zapytanie jest przetwarzane'
@@ -98,8 +96,7 @@ const onSuccessful = async ({ name, email, phone, message }, e) => {
       }
     })
     .catch(e => {
-      console.log('SendGrid')
-      console.log(e)
+      console.error('SendGrid error', e)
       return {
         statusCode: 500,
       }
@@ -140,8 +137,7 @@ exports.handler = async (e, context) => {
       }
     })
     .catch(err => {
-      console.log('Captcha error')
-      console.log(err)
+      console.error('Captcha error', err)
       return {
         statusCode: 500,
       }
