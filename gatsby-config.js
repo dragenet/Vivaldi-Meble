@@ -1,15 +1,10 @@
 require('dotenv').config()
-<<<<<<< HEAD
-
-console.log('Apitoken', process.env.DATO_API_TOKEN)
-=======
->>>>>>> dev
 
 module.exports = {
   siteMetadata: {
     title: `ViValdi MEBLE`,
     description: `MEBLE na każdą porę roku`,
-    author: `@dragenet`,
+    author: `ViValdi MEBLE`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

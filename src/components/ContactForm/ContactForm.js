@@ -11,6 +11,9 @@ import FormCheckbox from './FormCheckbox'
 import FormButton from './FormButton'
 import ErrorMessage from './FormErrorMessage'
 
+import validator from '../../helpers/formValidator'
+import fetchForm from '../../helpers/fetchForm'
+
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -28,44 +31,14 @@ const Button = styled(FormButton)`
 
 const StyledReCAPTCHA = styled(ReCAPTCHA)`
   @media screen and (max-width: ${({ theme }) => theme.featuresBreakpoint}) {
+    transform: scale(0.7);
+  }
+  @media screen and (max-width: ${({ theme }) => theme.mobileBreakpoint}) {
     transform: scale(0.5);
   }
 `
 
 const ContactForm = ({ onSuccessful }) => {
-  const validate = values => {
-    values.phone = values.phone.replace(/\s/g, '')
-    let errors = {}
-
-    if (!values.name) {
-      errors.name = 'To pole jest wymagane'
-    }
-
-    if (!values.email) {
-      errors.email = 'To pole jest wymagane'
-    } else if (!/\w+@\w+\.\w+/.test(values.email)) {
-      errors.email = 'Podany email nie jest poprawny'
-    }
-    if (!values.phone) {
-      errors.phone = 'To pole jest wymagane'
-    } else if (!/^\+?[0-9]{6,16}$/.test(values.phone)) {
-      errors.phone = 'Podany numer jest nieprawidłowy'
-    }
-    if (!values.message) {
-      errors.message = 'To pole jest wymagane'
-    }
-
-    if (!values.acceptPrivacyPolicy) {
-      errors.acceptPrivacyPolicy = 'To pole jest wymagane'
-    }
-
-    if (!values.recaptcha) {
-      errors.recaptcha = 'To pole jest wymagane'
-    }
-
-    return errors
-  }
-
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -76,21 +49,7 @@ const ContactForm = ({ onSuccessful }) => {
       recaptcha: null,
     },
     onSubmit: values => {
-      // console.log(values)
-      fetch('/.netlify/functions/contactform', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      })
-        .then(res => {
-          if (res.status === 200 || res.status === 400 || res.status === 401) {
-            return res.json()
-          } else {
-            throw Error(res)
-          }
-        })
+      fetchForm(values)
         .then(data => {
           if (data.status !== 'successful') {
             formik.setErrors(data.errors)
@@ -102,7 +61,7 @@ const ContactForm = ({ onSuccessful }) => {
           formik.setErrors({ submit: 'Przepraszamy. Spróbuj ponownie później' })
         })
     },
-    validate,
+    validate: validator,
   })
 
   const onCaptchaResolve = val => {

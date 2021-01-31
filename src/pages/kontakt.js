@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
+import SEO from '../components/seo'
 import ContactData from '../components/ContactData'
 import ContactForm from '../components/ContactForm/ContactForm'
 
@@ -30,27 +31,29 @@ const Kontakt = ({ data }) => {
   const [isSend, setIsSend] = useState(false)
 
   const formSuccessful = () => {
-    console.log('Form send')
     setIsSend(true)
   }
 
   return (
-    <Wrapper>
-      <InnerWrapper>
-        <ContactData data={data.datoCmsContact} />
-      </InnerWrapper>
+    <>
+      <SEO title="Kontakt" />
+      <Wrapper>
+        <InnerWrapper>
+          <ContactData data={data.datoCmsContact} />
+        </InnerWrapper>
 
-      <InnerWrapper>
-        {isSend ? (
-          <>
-            <h4>Dziękujemy</h4>
-            <p>Twoje zapytanie jest teraz przetwarzane!</p>
-          </>
-        ) : (
-          <ContactForm onSuccessful={formSuccessful} />
-        )}
-      </InnerWrapper>
-    </Wrapper>
+        <InnerWrapper>
+          {isSend ? (
+            <>
+              <h4>Dziękujemy</h4>
+              <p>Twoje zapytanie jest teraz przetwarzane!</p>
+            </>
+          ) : (
+            <ContactForm onSuccessful={formSuccessful} />
+          )}
+        </InnerWrapper>
+      </Wrapper>
+    </>
   )
 }
 

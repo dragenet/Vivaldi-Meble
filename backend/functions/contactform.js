@@ -85,7 +85,7 @@ const onSuccessful = async ({ name, email, phone, message }, e) => {
     .then(() => {
       msg.to = email
       msg.templateId = process.env.SENDGRID_TEMPLATE_CUSTOMER
-      msg.subject = 'Twoje zapytanie jest przetwarzane'
+      msg.dynamicTemplateData.subject = 'Twoje zapytanie jest przetwarzane'
       sgMail.send(msg)
       return {
         statusCode: 200,
@@ -96,7 +96,7 @@ const onSuccessful = async ({ name, email, phone, message }, e) => {
       }
     })
     .catch(e => {
-      console.error(e)
+      console.error('SendGrid error', e)
       return {
         statusCode: 500,
       }
@@ -137,8 +137,7 @@ exports.handler = async (e, context) => {
       }
     })
     .catch(err => {
-      console.log('Captcha error')
-      console.log(err)
+      console.error('Captcha error', err)
       return {
         statusCode: 500,
       }

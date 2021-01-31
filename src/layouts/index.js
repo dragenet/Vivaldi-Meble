@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 
 import ThemeProvider from '../Theme/ThemeProvider'
 
@@ -21,7 +21,7 @@ import Button from '../components/ContactForm/FormButton'
 const StyledWrapper = styled.div`
   position: absolute;
   top: 70px;
-  min-height: calc(100vh - 70px);
+  min-height: ${({ theme }) => `calc(100vh - ${theme.navbarHeight})`};
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,9 @@ const Layout = ({ children, path }) => {
       />
       <StyledWrapper>
         <main>{children}</main>
+
         <StyledFooter />
+
         {cookiesAccepted ? null : (
           <StyledCookiesAlert>
             <StyledSmall>
