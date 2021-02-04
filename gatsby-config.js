@@ -5,6 +5,7 @@ module.exports = {
     title: `ViValdi MEBLE`,
     description: `MEBLE na każdą porę roku`,
     author: `ViValdi MEBLE`,
+    siteUrl: 'https://meblevivaldi.pl/',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -70,6 +71,7 @@ module.exports = {
         // In this example, if some field value is missing in Italian, fall back to English
       },
     },
+    `gatsby-plugin-sitemap`,
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
