@@ -3,7 +3,7 @@ require('dotenv').config()
 module.exports = {
   siteMetadata: {
     title: `ViValdi MEBLE`,
-    description: `MEBLE na każdą porę roku`,
+    description: `Nasza firma zajmuje się projektowaniem i produkcją mebli dopasowanych do indywidualnych potrzeb klienta. Wykonujemy meble biurowe, łazienkowe, kuchenne, garderoby oraz meble specjalnego przeznaczenia np. zabudowy gatronomii.`,
     author: `ViValdi MEBLE`,
     siteUrl: 'https://meblevivaldi.pl/',
   },
