@@ -7,10 +7,10 @@ import { Link } from 'gatsby'
 const Wrapper = styled(Link)`
   position: relative;
   display: block;
-  width: 100%;
-  height: 100%;
   cursor: pointer;
   overflow: hidden;
+  width: 360px;
+  height: 250px;
 `
 
 const StyledImage = styled(Image)`
