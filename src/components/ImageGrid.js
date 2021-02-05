@@ -18,18 +18,14 @@ const Wrapper = styled.div`
   ${({ theme }) => genMediaQueries(theme.imageGridBreakpoints)}
 `
 
-const genMediaQueries = breakpoints => {
-  const { i, media } = Object.values(breakpoints).reduce(
-    (acc, val) => ({
-      i: acc.i + 1,
-      media: acc.media.concat(`@media screen and (min-width: ${val}) {
-      grid-template-columns: repeat(${acc.i}, 1fr);
-    }`),
-    }),
-    { i: 2, media: '' }
+const genMediaQueries = breakpoints =>
+  Object.values(breakpoints).reduce(
+    (acc, val, i) =>
+      acc.concat(
+        `@media screen and (min-width: ${val}) { grid-template-columns: repeat(${i + 2}, 1fr); }`
+      ),
+    ''
   )
-  return media
-}
 
 const ImageGrid = ({ className, gap, children }) => {
   return (
