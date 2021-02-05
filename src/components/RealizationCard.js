@@ -8,11 +8,14 @@ const Wrapper = styled(Link)`
   position: relative;
   display: block;
   width: 100%;
+  height: 100%;
   cursor: pointer;
   overflow: hidden;
 `
 
 const StyledImage = styled(Image)`
+  width: 100%;
+  height: 100%;
   & > picture > img {
     ${Wrapper}:hover & {
       filter: grayscale(50%);
