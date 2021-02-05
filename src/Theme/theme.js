@@ -1,4 +1,11 @@
 export const theme = {
+  imageGridBreakpoints: {
+    xs: '850px',
+    s: '1250px',
+    m: '1700px',
+    l: '2100px',
+    xl: '2525px',
+  },
   navbarHeight: '70px',
   footerHeight: '70px',
   heroBreakpoint: '1250px',
