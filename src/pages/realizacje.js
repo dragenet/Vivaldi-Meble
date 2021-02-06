@@ -1,13 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
 import ImageGrid from '../components/ImageGrid'
 import RealizationCard, { Title } from '../components/RealizationCard'
 
+const StyledImageGrid = styled(ImageGrid)`
+  margin: 40px auto;
+`
+
 const Realizacje = ({ data }) => {
   return (
-    <ImageGrid gap="20px">
+    <StyledImageGrid gap="30px">
       {data.allDatoCmsRealization.nodes.map(node => (
         <RealizationCard
           key={node.slug}
@@ -17,13 +22,13 @@ const Realizacje = ({ data }) => {
           <Title>{node.title}</Title>
         </RealizationCard>
       ))}
-    </ImageGrid>
+    </StyledImageGrid>
   )
 }
 
-Realizacje.propTypes = {}
-
-Realizacje.defaultProps = {}
+Realizacje.propTypes = {
+  data: PropTypes.object.isRequired
+}
 
 export const query = graphql`
   query getRealizationsQuery {
