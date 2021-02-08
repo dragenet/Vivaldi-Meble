@@ -27,12 +27,14 @@ const Realizacje = ({ data }) => {
 }
 
 Realizacje.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
 }
 
 export const query = graphql`
   query getRealizationsQuery {
-    allDatoCmsRealization {
+    allDatoCmsRealization(
+      sort: { fields: meta___firstPublishedAt, order: DESC }
+    ) {
       nodes {
         title
         slug
