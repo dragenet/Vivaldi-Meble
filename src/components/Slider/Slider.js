@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useState, useReducer, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Image from 'gatsby-image'
@@ -15,6 +15,7 @@ import {
   currentImageTranslate,
   useClickHandler,
   useCurrentImageReducer,
+  useOnTouch,
 } from './helpers'
 
 const Wrapper = styled.div`
@@ -66,7 +67,7 @@ const Buttons = styled.button`
   outline: none;
   border: none;
   background-color: ${({ theme }) => theme.bgColorSliderNavs};
-  opacity: 0;
+  opacity: ${({ active }) => (active ? 1 : 0)};
   cursor: pointer;
 
   &:hover {
@@ -77,22 +78,29 @@ const Buttons = styled.button`
 const LeftButton = styled(Buttons)`
   left: 0;
 
-  ${LeftColid}:hover ~ & {
-    opacity: 1;
+  @media (hover: hover) {
+    ${LeftColid}:hover ~ & {
+      opacity: 1;
+    }
   }
 `
 const RightButton = styled(Buttons)`
   right: 0;
-  ${RightColid}:hover ~ & {
-    opacity: 1;
+
+  @media (hover: hover) {
+    ${RightColid}:hover ~ & {
+      opacity: 1;
+    }
   }
 `
 
 const CloseButton = styled(Buttons)`
   top: 0;
   right: 0;
-  ${RightColid}:hover ~ & {
-    opacity: 1;
+  @media (hover: hover) {
+    ${RightColid}:hover ~ & {
+      opacity: 1;
+    }
   }
 `
 
@@ -103,6 +111,7 @@ const StyledIcon = styled(FontAwesomeIcon).attrs(({ size }) => ({
 `
 
 const Slider = ({ images, index, callback }) => {
+  const [showNavs, setShowNavs] = useState(false)
   const [currentImage, dispatchCurrentImage] = useReducer(
     useCurrentImageReducer(images.length),
     index
@@ -114,7 +123,18 @@ const Slider = ({ images, index, callback }) => {
     callback
   )
 
-  return index !== null ? (
+  const [touchStartHandler, touchEndHandler] = useOnTouch(setShowNavs, 3000)
+
+  useEffect(() => {
+    window.addEventListener('touchstart', touchStartHandler, false)
+    window.addEventListener('touchend', touchEndHandler, false)
+    return () => {
+      window.removeEventListener('touchstart', touchStartHandler)
+      window.removeEventListener('touchend', touchEndHandler, false)
+    }
+  }, [])
+
+  return (
     <>
       <Wrapper>
         <InnerWrapper index={currentImage}>
@@ -129,21 +149,21 @@ const Slider = ({ images, index, callback }) => {
         </InnerWrapper>
 
         <LeftColid />
-        <LeftButton onClick={clickHandler(actions.prev)}>
+        <LeftButton onClick={clickHandler(actions.prev)} active={showNavs}>
           <StyledIcon icon={faAngleLeft} />
         </LeftButton>
 
         <RightColid />
-        <RightButton onClick={clickHandler(actions.next)}>
+        <RightButton onClick={clickHandler(actions.next)} active={showNavs}>
           <StyledIcon icon={faAngleRight} />
         </RightButton>
 
-        <CloseButton onClick={clickHandler(actions.close)}>
+        <CloseButton onClick={clickHandler(actions.close)} active={showNavs}>
           <StyledIcon icon={faTimes} size="2x" />
         </CloseButton>
       </Wrapper>
     </>
-  ) : null
+  )
 }
 
 Slider.propTypes = {

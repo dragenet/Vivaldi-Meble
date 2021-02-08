@@ -26,3 +26,18 @@ export const useClickHandler = (state, dispatch, callback) => action => () => {
   }
   callback && callback(action, state)
 }
+
+const onTouchStart = setState => () => {
+  setState(true)
+}
+
+const onTouchEnd = (setState, timeout) => () => {
+  setTimeout(() => {
+    setState(false)
+  }, timeout)
+}
+
+export const useOnTouch = (setState, timeout = 0) => [
+  onTouchStart(setState),
+  onTouchEnd(setState, timeout),
+]
