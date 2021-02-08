@@ -61,7 +61,7 @@ export const query = graphql`
       description
       imageGallery {
         originalId
-        preview: fixed(width: 300) {
+        fixed(width: 300) {
           ...GatsbyDatoCmsFixed_tracedSVG
         }
         fluid {
