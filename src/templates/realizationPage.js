@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { graphql, Link } from 'gatsby'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Mansonry from 'react-masonry-component'
-import Image from 'gatsby-image'
+
+import Gallery from '../components/Gallery'
 
 const Wrapper = styled.div`
   width: 80%;
@@ -25,14 +25,8 @@ const StyledHeader = styled.h2`
 const StyledP = styled.p`
   margin-bottom: 36px;
 `
-const StyledMansonry = styled(Mansonry)`
+const StyledGallery = styled(Gallery)`
   margin: 0 auto;
-
-`
-
-const StyledImage = styled(Image)`
-  margin: 10px;
-  
 `
 
 const RealizationPage = ({ data }) => {
@@ -51,16 +45,14 @@ const RealizationPage = ({ data }) => {
         }}
       ></StyledP>
 
-      <StyledMansonry options={{isFitWidth: true}}>
-        {data.datoCmsRealization.imageGallery.map((image) => (
-          <StyledImage key={image.fixed.src} fixed={image.fixed} />
-        ))}
-      </StyledMansonry>
+      <StyledGallery images={data.datoCmsRealization.imageGallery} />
     </Wrapper>
   )
 }
 
-RealizationPage.propTypes = {}
+RealizationPage.propTypes = {
+  data: PropTypes.object.isRequired,
+}
 
 export const query = graphql`
   query realizationQuery($slug: String!) {
@@ -71,6 +63,7 @@ export const query = graphql`
         fixed(width: 300) {
           ...GatsbyDatoCmsFixed_tracedSVG
         }
+        originalId
       }
     }
   }
