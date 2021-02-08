@@ -5,9 +5,11 @@ import { graphql, Link } from 'gatsby'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Mansonry from 'react-masonry-component'
+import Image from 'gatsby-image'
 
 const Wrapper = styled.div`
-  margin: 40px 70px;
+  width: 80%;
+  margin: 40px auto;
 `
 
 const HeaderWrapper = styled.div`
@@ -24,11 +26,13 @@ const StyledP = styled.p`
   margin-bottom: 36px;
 `
 const StyledMansonry = styled(Mansonry)`
-  margin: 0 -10px;
+  margin: 0 auto;
+
 `
 
-const StyledImage = styled.img`
+const StyledImage = styled(Image)`
   margin: 10px;
+  
 `
 
 const RealizationPage = ({ data }) => {
@@ -47,9 +51,9 @@ const RealizationPage = ({ data }) => {
         }}
       ></StyledP>
 
-      <StyledMansonry >
+      <StyledMansonry options={{isFitWidth: true}}>
         {data.datoCmsRealization.imageGallery.map((image) => (
-          <StyledImage src={image.url} />
+          <StyledImage key={image.fixed.src} fixed={image.fixed} />
         ))}
       </StyledMansonry>
     </Wrapper>
@@ -64,7 +68,9 @@ export const query = graphql`
       title
       description
       imageGallery {
-        url(imgixParams: {fit: "clip", w: "300"})
+        fixed(width: 300) {
+          ...GatsbyDatoCmsFixed_tracedSVG
+        }
       }
     }
   }
