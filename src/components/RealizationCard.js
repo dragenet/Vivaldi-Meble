@@ -9,8 +9,12 @@ const Wrapper = styled(Link)`
   display: block;
   cursor: pointer;
   overflow: hidden;
-  width: 360px;
+  width: 100%;
   height: 250px;
+  @media screen and (min-width: ${({ theme }) =>
+      theme.imageGridBreakpoints.xs}) {
+    width: 360px;
+  }
 `
 
 const StyledImage = styled(Image)`
