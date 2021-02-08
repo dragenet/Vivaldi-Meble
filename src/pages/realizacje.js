@@ -10,8 +10,13 @@ const StyledImageGrid = styled(ImageGrid)`
   margin: 40px auto;
 `
 
+const FallbackMessage = styled.p`
+  margin-top: 60px;
+  text-align: center;
+`
+
 const Realizacje = ({ data }) => {
-  return (
+  return data.allDatoCmsRealization.nodes.length !== 0 ? (
     <StyledImageGrid gap="30px">
       {data.allDatoCmsRealization.nodes.map(node => (
         <RealizationCard
@@ -23,6 +28,8 @@ const Realizacje = ({ data }) => {
         </RealizationCard>
       ))}
     </StyledImageGrid>
+  ) : (
+    <FallbackMessage>Tutaj pojawią się nasze realizacje</FallbackMessage>
   )
 }
 

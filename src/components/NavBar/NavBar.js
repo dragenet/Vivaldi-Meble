@@ -116,13 +116,13 @@ const NavBar = ({ activePath, facebook, instagram }) => {
 
       <MenuWrapper active={isMenuOpen}>
         <StyledNav>
-          {/* <NavItem
+          <NavItem
             to="/realizacje"
             activePath={activePath}
             onClick={handlePathChange}
           >
             realizacje
-          </NavItem> */}
+          </NavItem>
           <NavItem
             to="/kontakt"
             activePath={activePath}
