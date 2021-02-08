@@ -20,5 +20,6 @@ export const theme = {
   colorTertiary: '#838383',
   bgColorPrimary: '#FAFAFA',
   bgColorMenu: '#F3F3F3',
+  bgColorSliderNavs: 'black',
   hamburgerButtonColor: '#C4C4C4',
 }

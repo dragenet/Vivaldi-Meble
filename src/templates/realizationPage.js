@@ -60,10 +60,13 @@ export const query = graphql`
       title
       description
       imageGallery {
-        fixed(width: 300) {
+        originalId
+        preview: fixed(width: 300) {
           ...GatsbyDatoCmsFixed_tracedSVG
         }
-        originalId
+        fluid {
+          ...GatsbyDatoCmsFluid_tracedSVG
+        }
       }
     }
   }
